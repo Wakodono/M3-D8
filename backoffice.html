@@ -51,13 +51,79 @@
     </nav>
 
     <div class="container">
-      <div class="row my-4 justify-content-center">
+      <div class="row justify-content-center">
         <div class="col-md-6">
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search product" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-              </form>
+          <h2 class="mt-5 mb-3">Backoffice</h2>
+          <form onsubmit="handleSubmit(event)">
+            <div class="form-group">
+              <label for="product name">Product name</label>
+              <input
+                id="product-name"
+                type="text"
+                class="form-control"
+                placeholder="Enter product name here"
+                aria-describedby="product name field"
+                required
+              />
             </div>
+            <div class="form-group">
+              <label for="brand">Brand</label>
+              <input
+                id="brand"
+                type="number"
+                class="form-control"
+                placeholder="Specify Brand"
+                aria-describedby="brand field"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <input
+                id="description"
+                type="number"
+                class="form-control"
+                placeholder="Short description"
+                aria-describedby="description field"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="price">Price</label>
+              <input
+                id="price"
+                type="number"
+                class="form-control"
+                placeholder="Insert product price"
+                aria-describedby="price field"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="image">Image url</label>
+              <input
+                id="image"
+                type="number"
+                class="form-control"
+                placeholder="Insert image url here"
+                aria-describedby="image field"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="id">Product id</label>
+              <input
+                id="product-id"
+                type="number"
+                class="form-control"
+                placeholder="Server generated product ID"
+                aria-describedby="id field"
+                required
+              />
+            </div>
+            <!-- <button type="button">Cancel</button> -->
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
         </div>
       </div>
     </div>
@@ -78,19 +144,52 @@
 
     <script>
 
-    const url = "https://striveschool-api.herokuapp.com/api/product/"
+      const handleSubmit = async (event) => {
+              event.preventDefault()
 
-      try {
-        const response = await fetch(url, {
-          method: "POST",
-          body: JSON.stringify(myEvent),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-      } catch (err) {
-        console.log(err.message);
-      }
+
+              const url = "https://striveschool-api.herokuapp.com/api/product/"
+
+              const prooduct = {
+                  name: document.getElementById("product-name").value,
+                  brand: document.getElementById("brand").value,
+                  description: document.getElementById("description").value,
+                  price: document.getElementById("price").value,
+                  ID: document.getElementById("product-id").value
+              }
+
+              try {
+                  const response = await fetch(url, {
+                      method: "POST",
+                      body: JSON.stringify(product),
+                      headers: {
+                          "Content-Type": "application/json",
+                      }
+                  })
+
+                  if (response.ok) {
+                      const respProduct = await response.json()
+                      alert("Appointment created successfully with an id of " + respProduct._id)
+                  } else {
+                      if (response.status >= 400 && response.status < 500) {
+                          throw new Error("User generated error, verify the data that you are sending!")
+                      } else if (response.status >= 500 && response.status < 600) {
+                          throw new Error("Server generated error, it wasn't me!")
+                      }
+                  }
+
+                  console.log("no exception was thrown")
+
+              } catch (err) {
+                  console.log(err)
+              } finally {
+                  console.log("I get logged no matter what.")
+              }
+
+              console.log("last thing")
+
+          }
+            
     </script>
   </body>
 </html>
