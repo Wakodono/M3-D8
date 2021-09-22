@@ -67,60 +67,50 @@
               />
             </div>
             <div class="form-group">
-              <label for="brand">Brand</label>
+              <label for="product name">Brand</label>
               <input
-                id="brand"
-                type="number"
+                id="product-name"
+                type="text"
                 class="form-control"
-                placeholder="Specify Brand"
-                aria-describedby="brand field"
+                placeholder="Enter product name here"
+                aria-describedby="product name field"
                 required
               />
             </div>
             <div class="form-group">
-              <label for="description">Description</label>
+              <label for="product name">Description</label>
               <input
-                id="description"
-                type="number"
+                id="product-name"
+                type="text"
                 class="form-control"
-                placeholder="Short description"
-                aria-describedby="description field"
+                placeholder="Enter product name here"
+                aria-describedby="product name field"
                 required
               />
             </div>
             <div class="form-group">
-              <label for="price">Price</label>
+              <label for="product name">Price</label>
               <input
-                id="price"
-                type="number"
+                id="product-name"
+                type="text"
                 class="form-control"
-                placeholder="Insert product price"
-                aria-describedby="price field"
+                placeholder="Enter product name here"
+                aria-describedby="product name field"
                 required
               />
             </div>
             <div class="form-group">
-              <label for="image">Image url</label>
+              <label for="product name">ID</label>
               <input
-                id="image"
-                type="number"
+                id="product-name"
+                type="text"
                 class="form-control"
-                placeholder="Insert image url here"
-                aria-describedby="image field"
+                placeholder="Enter product name here"
+                aria-describedby="product name field"
                 required
               />
             </div>
-            <div class="form-group">
-              <label for="id">Product id</label>
-              <input
-                id="product-id"
-                type="number"
-                class="form-control"
-                placeholder="Server generated product ID"
-                aria-describedby="id field"
-                required
-              />
-            </div>
+            
             <!-- <button type="button">Cancel</button> -->
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
@@ -169,7 +159,7 @@
 
                   if (response.ok) {
                       const respProduct = await response.json()
-                      alert("Appointment created successfully with an id of " + respProduct._id)
+                      alert("Product created successfully with an id of " + respProduct._id)
                   } else {
                       if (response.status >= 400 && response.status < 500) {
                           throw new Error("User generated error, verify the data that you are sending!")
@@ -182,11 +172,7 @@
 
               } catch (err) {
                   console.log(err)
-              } finally {
-                  console.log("I get logged no matter what.")
-              }
-
-              console.log("last thing")
+              } 
 
           }
             
