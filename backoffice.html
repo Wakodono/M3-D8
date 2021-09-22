@@ -67,42 +67,28 @@
               />
             </div>
             <div class="form-group">
-              <label for="product name">Brand</label>
+              <label for="product-brand">Brand</label>
               <input
-                id="product-name"
+                id="product-brand"
                 type="text"
                 class="form-control"
-                placeholder="Enter product name here"
+                placeholder="Enter product brand here"
                 aria-describedby="product name field"
                 required
               />
             </div>
             <div class="form-group">
-              <label for="product name">Description</label>
-              <input
-                id="product-name"
-                type="text"
-                class="form-control"
-                placeholder="Enter product name here"
-                aria-describedby="product name field"
-                required
-              />
+              <label for="description">Description</label>
+              <textarea 
+                class="form-control" 
+                id="description" 
+                rows="3">
+              </textarea>
             </div>
             <div class="form-group">
-              <label for="product name">Price</label>
+              <label for="product-price">Price</label>
               <input
-                id="product-name"
-                type="text"
-                class="form-control"
-                placeholder="Enter product name here"
-                aria-describedby="product name field"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label for="product name">ID</label>
-              <input
-                id="product-name"
+                id="product-price"
                 type="text"
                 class="form-control"
                 placeholder="Enter product name here"
@@ -112,6 +98,7 @@
             </div>
             
             <!-- <button type="button">Cancel</button> -->
+            <button type="button" class="btn btn-secondary">Cancel</button>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
         </div>
@@ -140,12 +127,11 @@
 
               const url = "https://striveschool-api.herokuapp.com/api/product/"
 
-              const prooduct = {
+              const product = {
                   name: document.getElementById("product-name").value,
-                  brand: document.getElementById("brand").value,
+                  brand: document.getElementById("product-brand").value,
                   description: document.getElementById("description").value,
-                  price: document.getElementById("price").value,
-                  ID: document.getElementById("product-id").value
+                  price: document.getElementById("product-price").value,
               }
 
               try {
@@ -159,6 +145,7 @@
 
                   if (response.ok) {
                       const respProduct = await response.json()
+                      console.log(respProduct)
                       alert("Product created successfully with an id of " + respProduct._id)
                   } else {
                       if (response.status >= 400 && response.status < 500) {
