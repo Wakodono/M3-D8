@@ -73,7 +73,7 @@
                 type="text"
                 class="form-control"
                 placeholder="Enter product brand here"
-                aria-describedby="product name field"
+                aria-describedby="product brand field"
                 required
               />
             </div>
@@ -91,8 +91,19 @@
                 id="product-price"
                 type="text"
                 class="form-control"
-                placeholder="Enter product name here"
-                aria-describedby="product name field"
+                placeholder="Enter product price here"
+                aria-describedby="product price field"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="image">Image url</label>
+              <input
+                id="image-url"
+                type="text"
+                class="form-control"
+                placeholder="Enter image url here"
+                aria-describedby="image url field"
                 required
               />
             </div>
@@ -132,6 +143,7 @@
                   brand: document.getElementById("product-brand").value,
                   description: document.getElementById("description").value,
                   price: document.getElementById("product-price").value,
+                  imageUrl: document.getElementById("image-url").value
               }
 
               try {
@@ -140,6 +152,7 @@
                       body: JSON.stringify(product),
                       headers: {
                           "Content-Type": "application/json",
+                          "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTFkMDkxOTJkNTI2MjAwMTViNmRjZjgiLCJpYXQiOjE2MzIzMTk5MjYsImV4cCI6MTYzMzUyOTUyNn0.5cBLlYna9rdW7HUvsZEpiFKRgBEx-FzOy6ux4wqu90Y"
                       }
                   })
 
